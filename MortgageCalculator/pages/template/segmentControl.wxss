@@ -1,0 +1,23 @@
+.rselected {
+  color: #333;
+  border-bottom: 4rpx solid #ee3939;
+}
+
+.runselected {
+  color: #777;
+}
+
+.rTopSegmentContrl {
+  display: flex;
+  height: 88rpx;
+}
+
+.rSegmentTitle {
+  width: 33.333%;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 0 22rpx;
+  padding: 22rpx 0;
+}

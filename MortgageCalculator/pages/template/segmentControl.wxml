@@ -1,0 +1,7 @@
+<template name="switchControl">
+  <view class="rTopSegmentContrl">
+    <view class="rSegmentTitle {{firstIndex ? 'rselected':'runselected'}}" bindtap='rSegmentControlActive' data-indexName = 'firstIndex'>{{firstIndexDec}}</view>
+    <view class="rSegmentTitle {{secondIndex ? 'rselected':'runselected'}}" bindtap='rSegmentControlActive' data-indexName = 'secondIndex'>{{secondIndexDec}}</view>
+    <view class="rSegmentTitle {{thirdIndex ? 'rselected':'runselected'}}" bindtap='rSegmentControlActive' data-indexName = 'thirdIndex'>{{thirdIndexDec}}</view>
+  </view>
+</template>

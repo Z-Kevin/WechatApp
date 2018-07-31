@@ -1,0 +1,20 @@
+<template name='changeType'>
+	<view class="containCellView">
+		<view class="contentDes">{{changeTypeName}}</view>
+		<view class="changeContainView">
+			<!-- 按房价总额 -->
+			<view class="leftPart" bindtap='partActive' data-indexName ='leftPart{{cellid}}'>
+				<view class="outsideCircle">
+					<view class="{{leftSelected?'insideCircle':'unselectCircle'}}"></view>
+				</view>
+				<view class="contentType">{{firstContentDes}}</view>
+			</view>
+			<view class="rightPart" bindtap='partActive' data-indexName ='rightPart{{cellid}}'>
+				<view class="outsideCircle">
+					<view class="{{rightSelected?'insideCircle':'unselectCircle'}}"></view>
+				</view>
+				<view class="contentType">{{secondContentDes}}</view>
+			</view>
+		</view>
+	</view>
+</template>

@@ -1,0 +1,13 @@
+<import src='../template/segmentControl.wxml' />
+<import src='../template/changeTypeCell.wxml' />
+<view>
+  <!-- 切换分页控制器 -->
+  <view>
+    <template is='switchControl' data="{{firstIndexDec,secondIndexDec,thirdIndexDec,firstIndex,secondIndex,thirdIndex}}"></template>
+  </view>
+  <!-- 输入框 -->
+  <view>
+    <template is='changeType' data='{{...cellItem[0]}}'></template>
+    <template is='changeType' data='{{...cellItem[1]}}'></template>
+  </view>
+</view>
