@@ -12,13 +12,13 @@
     font-size: 28rpx;
     color: #333;
     letter-spacing: 0;
-    width: 30%;
+    flex: 1;
     text-align: left;
   }
   
   .changeContainView {
     height: 88rpx;
-    width: 70%;
+    flex: 3;
     line-height: 100rpx;
     display: flex;
   }
