@@ -25,8 +25,6 @@ Page({
       leftSelected: false,
       rightSelected: true
     }]
-
-
   },
   onLoad: function () {
   },
