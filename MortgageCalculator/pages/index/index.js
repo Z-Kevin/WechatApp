@@ -45,7 +45,7 @@ Page({
     switch (event.currentTarget.dataset.indexname) {
       case 'leftPart0': {
         this.data.cellItem[0].leftSelected = true,
-        this.data.cellItem[0].rightSelected = false
+          this.data.cellItem[0].rightSelected = false
         this.setData({
           cellItem: that.data.cellItem
         })
@@ -53,7 +53,7 @@ Page({
         break;
       case 'rightPart0': {
         this.data.cellItem[0].leftSelected = false,
-        this.data.cellItem[0].rightSelected = true
+          this.data.cellItem[0].rightSelected = true
         this.setData({
           cellItem: that.data.cellItem
         })
@@ -61,7 +61,7 @@ Page({
         break;
       case 'leftPart1': {
         this.data.cellItem[1].leftSelected = true,
-        this.data.cellItem[1].rightSelected = false
+          this.data.cellItem[1].rightSelected = false
         this.setData({
           cellItem: that.data.cellItem
         })
@@ -69,7 +69,7 @@ Page({
         break;
       case 'rightPart1': {
         this.data.cellItem[1].leftSelected = false,
-        this.data.cellItem[1].rightSelected = true
+          this.data.cellItem[1].rightSelected = true
         this.setData({
           cellItem: that.data.cellItem
         })
@@ -78,5 +78,42 @@ Page({
       default:
         return;
     }
+  },
+  rSegmentControlActive(event) {
+    console.log(event);
+    if (event.currentTarget.dataset.indexname == 'firstIndex' && this.data.firstIndex) {
+      return;
+    } else if (event.currentTarget.dataset.indexname == 'secondIndex' && this.data.secondIndex) {
+      return;
+    } else if (event.currentTarget.dataset.indexname == 'thirdIndex' && this.data.thirdIndex) {
+      return;
+    }
+    switch (event.currentTarget.dataset.indexname) {
+      case 'firstIndex': {
+        this.setData({
+          firstIndex: true,
+          secondIndex: false,
+          thirdIndex: false
+        })
+      }
+        break;
+      case 'secondIndex': {
+        this.setData({
+          firstIndex: false,
+          secondIndex: true,
+          thirdIndex: false
+        })
+      }
+        break;
+      case 'thirdIndex': {
+        this.setData({
+          firstIndex: false,
+          secondIndex: false,
+          thirdIndex: true
+        })
+      }
+        break;
+    }
+
   }
 })

@@ -27,7 +27,7 @@
     display: flex;
     line-height: 88rpx;
     height: 88rpx;
-    width: 220rpx;
+    flex: 1.5;
     text-align: left;
   }
   
@@ -35,8 +35,7 @@
     display: flex;
     line-height: 88rpx;
     height: 88rpx;
-    text-align: left;
-    width: 220rpx;
+    flex: 1.5;
   }
   
   .contentType {
@@ -44,8 +43,8 @@
     font-size: 26rpx;
     color: #999;
     letter-spacing: 0;
-    text-align: left;
-    width: 160rpx
+    margin-left: 44rpx;
+    position: absolute;
   }
   
   .outsideCircle {
@@ -53,11 +52,10 @@
     height: 24rpx;
     border-radius: 50%;
     border: 2rpx solid #ee3939;
-    text-align: center;
-    align-content: center;
     background-color: white;
-    margin:auto;
-    margin-left: 0rpx;
+    margin:0 auto;
+    margin-top: 30rpx;
+    margin-left: 0rpx
   }
   
   .insideCircle {
@@ -65,9 +63,8 @@
     height: 20rpx;
     border-radius: 50%;
     background-color: #ee3939;
-    margin-left: 2rpx;
-    margin-top: 2rpx;
-  
+    margin:0 auto;
+    margin-top: 3rpx;
   }
 
   .unselectCircle {
