@@ -1,28 +1,37 @@
 <template name='changeType'>
-	<view class="containCellView">
-		<view class="contentDes">{{changeTypeName}}</view>
-		<view class="changeContainView">
-			<!-- 按房价总额 -->
-			<view class="leftPart" bindtap='partActive' data-indexName ='leftPart{{cellid}}'>
-				<view class="outsideCircle">
-					<view class="{{leftSelected?'insideCircle':'unselectCircle'}}"></view>
-				</view>
-				<view class="contentType">{{firstContentDes}}</view>
-			</view>
-			<view class="rightPart" bindtap='partActive' data-indexName ='rightPart{{cellid}}'>
-				<view class="outsideCircle">
-					<view class="{{rightSelected?'insideCircle':'unselectCircle'}}"></view>
-				</view>
-				<view class="contentType">{{secondContentDes}}</view>
-			</view>
-		</view>
-	</view>
+  <view class="containCellView">
+    <view class="contentDes">{{changeTypeName}}</view>
+    <view class="changeContainView">
+      <!-- 按房价总额 -->
+      <view class="leftPart" bindtap='partActive' data-indexName='leftPart{{cellid}}'>
+        <view class="outsideCircle">
+          <view class="{{leftSelected?'insideCircle':'unselectCircle'}}"></view>
+        </view>
+        <view class="contentType">{{firstContentDes}}</view>
+      </view>
+      <view class="rightPart" bindtap='partActive' data-indexName='rightPart{{cellid}}'>
+        <view class="outsideCircle">
+          <view class="{{rightSelected?'insideCircle':'unselectCircle'}}"></view>
+        </view>
+        <view class="contentType">{{secondContentDes}}</view>
+      </view>
+    </view>
+  </view>
 </template>
-
+<!-- 房价总额： 输入框 （单位）万元格式 -->
 <template name="inputCell">
-	<view class="inputViewCell">
-		<view class="baseFont leftNameDes">{{typeNameDes}}</view>
-		<input class="inputView"></input>
-		<view class="baseFont UnitsView">万元</view>
-	</view>
+  <view class="inputViewCell">
+    <view class="baseFont leftNameDes">{{typeNameDes}}</view>
+    <input class="baseFont inputView" type="number" placeholder="0"></input>
+    <view class="lightFont unitsView">万元</view>
+  </view>
+</template>
+<template name="changeContentCell">
+  <view class="inputViewCell">
+    <view class="baseFont leftNameDes">{{changeContentTypeNameDes}}</view>
+    <picker class="pickerView" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="baseFont">{{array[index]}}</view>
+    </picker>
+    <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
+  </view>
 </template>

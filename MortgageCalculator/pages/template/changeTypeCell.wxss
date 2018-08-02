@@ -62,7 +62,6 @@
     width: 20rpx;
     height: 20rpx;
     border-radius: 50%;
-    background-color: #ee3939;
     margin:0 auto;
     margin-top: 3rpx;
   }
@@ -76,7 +75,6 @@
   display: flex;
   height: 88rpx;
   width: 100%;
-  background-color: rebeccapurple;
   padding-right: 30rpx;
   padding-left: 30rpx;
   position: relative;
@@ -96,18 +94,36 @@
 
 .inputView {
   height: 100%;
-  font-family: PingFangSC-Regular;
-  font-size: 26rpx;
-  color: #999;
-  letter-spacing: 0;
   flex: 1;
-  background-color: aquamarine;
   margin-right: 120rpx;
   text-align: right;
 }
 
-.UnitsView {
+.unitsView {
   position: absolute;
   right: 80rpx;
-  background-color: #ee3939;
+}
+
+.lightFont {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 88rpx;
+}
+
+.moreImage{
+  width: 20rpx;
+  height: 32rpx;
+  line-height: 88rpx;
+  text-align: center;
+  top: 28rpx;
+  right: 120rpx;
+}
+
+.pickerView {
+  height: 88rpx;
+  margin-right: 120rpx;
+  text-align: right;
+  flex: 1;
 }
