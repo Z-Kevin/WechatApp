@@ -70,3 +70,44 @@
   .unselectCircle {
     background-color: white;
   }
+
+  /* cell输入框金融显示 */
+.inputViewCell {
+  display: flex;
+  height: 88rpx;
+  width: 100%;
+  background-color: rebeccapurple;
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+  position: relative;
+}
+
+.baseFont {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 88rpx;
+}
+
+.leftNameDes {
+  width: 136rpx;
+}
+
+.inputView {
+  height: 100%;
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #999;
+  letter-spacing: 0;
+  flex: 1;
+  background-color: aquamarine;
+  margin-right: 120rpx;
+  text-align: right;
+}
+
+.UnitsView {
+  position: absolute;
+  right: 80rpx;
+  background-color: #ee3939;
+}

@@ -18,3 +18,11 @@
 		</view>
 	</view>
 </template>
+
+<template name="inputCell">
+	<view class="inputViewCell">
+		<view class="baseFont leftNameDes">{{typeNameDes}}</view>
+		<input class="inputView"></input>
+		<view class="baseFont UnitsView">万元</view>
+	</view>
+</template>

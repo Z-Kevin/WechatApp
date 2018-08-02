@@ -9,5 +9,6 @@
   <view>
     <template is='changeType' data='{{...cellItem[0]}}'></template>
     <template is='changeType' data='{{...cellItem[1]}}'></template>
+    <template is='inputCell' data='{{typeNameDes}}'></template>
   </view>
 </view>

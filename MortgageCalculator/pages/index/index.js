@@ -7,6 +7,7 @@ Page({
     firstIndexDec: '公积金贷款',
     secondIndexDec: '商业贷款',
     thirdIndexDec: '组合贷款',
+    typeNameDes: '房价总额:',
     firstIndex: true,
     secondIndex: false,
     thirdIndex: false,
