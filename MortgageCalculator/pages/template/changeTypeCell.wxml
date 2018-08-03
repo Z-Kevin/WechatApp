@@ -29,7 +29,7 @@
 <template name="changeContentCell">
   <view class="inputViewCell">
     <view class="baseFont leftNameDes">{{changeContentTypeNameDes}}</view>
-    <picker class="pickerView" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <picker class="pickerView" data-pickerName ='{{pickerName}}' bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="baseFont">{{array[index]}}</view>
     </picker>
     <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
