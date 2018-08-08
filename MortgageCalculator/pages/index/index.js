@@ -8,9 +8,12 @@ Page({
     secondIndexDec: '商业贷款',
     thirdIndexDec: '组合贷款',
     typeNameDes: '房价总额:',
+    daiKuanNameDes: "贷款金额",
+    lilvNameDes: '商贷利率',
     firstIndex: true,
     secondIndex: false,
     thirdIndex: false,
+    daiKuanBili: true,
     cellItem: [{
       cellid: 0,
       changeTypeName: '计算方式：',
@@ -57,17 +60,22 @@ Page({
     switch (event.currentTarget.dataset.indexname) {
       case 'leftPart0': {
         this.data.cellItem[0].leftSelected = true,
-          this.data.cellItem[0].rightSelected = false
+        this.data.cellItem[0].rightSelected = false
         this.setData({
-          cellItem: that.data.cellItem
+          cellItem: that.data.cellItem,
+          daiKuanBili: true,
+          typeNameDes: '房价总额'
         })
       }
         break;
       case 'rightPart0': {
+        console.log("按照贷款总额方式计算");
         this.data.cellItem[0].leftSelected = false,
-          this.data.cellItem[0].rightSelected = true
+        this.data.cellItem[0].rightSelected = true
         this.setData({
-          cellItem: that.data.cellItem
+          cellItem: that.data.cellItem,
+          daiKuanBili: false,
+          typeNameDes: '贷款总额'
         })
       }
         break;
@@ -142,5 +150,30 @@ Page({
       });
     }
     
+  },
+  bindKeyInput(e) {
+    console.log(e.detail.value);
+    var value = e.detail.value
+    var pos = e.detail.cursor
+    value = value.replace('%','')
+    if(value.length > 0){
+      value = value+'%'
+    }
+    // if(pos != -1){
+    //   //光标在中间
+    //   var left = e.detail.value.slice(0,pos)
+    //   //计算光标的位置
+    //   pos = left.replace(/11/g,'2').length
+    // }
+
+    //直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置
+    return {
+      value: value,
+      cursor: pos
+    }
+    this.setData({
+      inputValue: e.detail.value+"%"
+      
+    })
   }
 })

@@ -10,8 +10,8 @@
     <template is='changeType' data='{{...cellItem[0]}}'></template>
     <template is='changeType' data='{{...cellItem[1]}}'></template>
     <template is='inputCell' data='{{typeNameDes}}'></template>
-    <template is='changeContentCell' data='{{...changeContentItem}}'></template>
+    <template wx:if ="{{daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
     <template is='changeContentCell' data='{{...fenqiItem}}'></template>
-    <template is='changeContentCell' data='{{...fenqiItem}}'></template>
+    <template is='lilvInputCell' data='{{lilvNameDes}}'></template>
   </view>
 </view>

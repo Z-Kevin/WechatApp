@@ -26,6 +26,7 @@
     <view class="lightFont unitsView">万元</view>
   </view>
 </template>
+<!-- 选择器cell -->
 <template name="changeContentCell">
   <view class="inputViewCell">
     <view class="baseFont leftNameDes">{{changeContentTypeNameDes}}</view>
@@ -33,5 +34,13 @@
       <view class="baseFont">{{array[index]}}</view>
     </picker>
     <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
+  </view>
+</template>
+<!-- 利率输入框 -->
+<template name="lilvInputCell">
+  <view class="inputViewCell">
+    <view class="baseFont leftNameDes">{{lilvNameDes}}</view>
+    <input class="baseFont inputView lilvInputVie" type="digit" placeholder="0" bindinput="bindKeyInput"></input>
+<image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
   </view>
 </template>
