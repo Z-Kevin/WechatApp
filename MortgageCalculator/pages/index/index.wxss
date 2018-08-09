@@ -1,4 +1,22 @@
 @import '../template/segmentControl.wxss';
 @import '../template/changeTypeCell.wxss';
 
+.advertiseView {
+  width: 100%;
+  height: 100rpx;
+}
 
+.cacluBtn {
+  font-family: PingFangSC-Medium;
+  font-size: 32rpx;
+  letter-spacing: 0;
+  text-align: center;
+  color: white;
+  background-color: #ee3939;
+  border-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0 auto;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}

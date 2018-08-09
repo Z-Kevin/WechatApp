@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/customInterestRate/interestRagePage"
+    "pages/customInterestRate/interestRagePage",
+    "pages/Repayment/repaymentPage"
   ],
   "window":{
     "backgroundTextStyle":"light",

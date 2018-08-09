@@ -7,20 +7,26 @@ Page({
     firstIndexDec: '公积金贷款',
     secondIndexDec: '商业贷款',
     thirdIndexDec: '组合贷款',
-    typeNameDes: '房价总额:',
-    daiKuanNameDes: "贷款金额",
-    lilvNameDes: '商贷利率',
-    firstIndex: true,
-    secondIndex: false,
-    thirdIndex: false,
-    daiKuanBili: true,
+    currentSegIndex: 1,
+    segmentControls:[
+      {tabInex:0, tabTitle:'公积金贷款'},
+      {tabInex:1, tabTitle:'商业贷款'},
+      {tabInex:2, tabTitle:'组合贷款'}
+    ],
+    // 计算方式切换时候更新的UI样式
+    calculationType: {
+      typeNameDes: '房价总额:',//房价总额：||贷款总额
+      daiKuanBili: true,//贷款比例是否显示
+      lilvNameDes: '商贷利率:',
+    },
+    //商贷情况显示数据
     cellItem: [{
       cellid: 0,
       changeTypeName: '计算方式：',
       firstContentDes: '按房价总额',
       secondContentDes: '按照贷款总额',
       leftSelected: true,
-      rightSelected: false
+      rightSelected: false,
     }, {
       cellid: 1,
       changeTypeName: '还款方式：',
@@ -40,11 +46,32 @@ Page({
       array: ['30年(360期)','29年(348期)','28年(336期)','27年(324期)','26年(312期)','25年(300期)','24年(228期)','23年(276期)','22年(264期)','21年(252期)','20年(240期)','19年(228期)','18年(216期)','17年(204期)','16年(192期)','15年(180期)','14年(168期)','13年(156期)','12年(144期)','11年(132期)','10年(120期)','9年(108期)','8年(96期)','7年(84期)','6年(72期)','5年(60期)','4年(48期)','3年(36期)','2年(24期)','1年(12期)'],
       index: 0,
       pickerName: 'fenqiPicker'
+    },
+    houseLoanCalcModel: {
+      businessTotalPrice:100,// 商业贷款额
+      fundTotalPrice: 100,//公积金贷款额
+      mortgageYear: 30,//按揭年数
+      bankRate: 0.049, //银行利率
+      fundRate: 0.059, //公积金利率
+      unitPrice: 6100,//房屋单价
+      area: 206 //面积
+    },
+    houseLoanResultModel: {
+      houseTotalPrice: 100,//房屋总价
+      loanTotalPrice: 100,//贷款总价
+      repayTotalPrice: 100,//还款总额
+      interestPayment:20,//支付利息
+      mortgageYear: 30,//按揭年数
+      mortgageMonth: 360,//按揭月数
+      avgMonthRepayment: 6400,//月均还款数
+      firstMonthRepayment: 6500,//首月还款
+      monthRepaymentArr: []//每月还款个数
     }
     
   },
   onLoad: function () {
   },
+  // 计算方式和还款方式选择切换
   partActive(event) {
     console.log(event);
     const that = this;
@@ -60,11 +87,10 @@ Page({
     switch (event.currentTarget.dataset.indexname) {
       case 'leftPart0': {
         this.data.cellItem[0].leftSelected = true,
-        this.data.cellItem[0].rightSelected = false
+        this.data.cellItem[0].rightSelected = false,
         this.setData({
           cellItem: that.data.cellItem,
-          daiKuanBili: true,
-          typeNameDes: '房价总额'
+          calculationType: { daiKuanBili: true, typeNameDes:'房价总额:', lilvNameDes: '商贷利率:'}
         })
       }
         break;
@@ -74,8 +100,7 @@ Page({
         this.data.cellItem[0].rightSelected = true
         this.setData({
           cellItem: that.data.cellItem,
-          daiKuanBili: false,
-          typeNameDes: '贷款总额'
+          calculationType: { daiKuanBili: false, typeNameDes:'贷款总额:', lilvNameDes: '商贷利率:'}
         })
       }
         break;
@@ -101,40 +126,31 @@ Page({
   },
   rSegmentControlActive(event) {
     console.log(event);
-    if (event.currentTarget.dataset.indexname == 'firstIndex' && this.data.firstIndex) {
+    if (event.currentTarget.dataset.indexname ==  this.data.currentSegIndex) {
       return;
-    } else if (event.currentTarget.dataset.indexname == 'secondIndex' && this.data.secondIndex) {
-      return;
-    } else if (event.currentTarget.dataset.indexname == 'thirdIndex' && this.data.thirdIndex) {
-      return;
-    }
+    } 
     switch (event.currentTarget.dataset.indexname) {
-      case 'firstIndex': {
+      case  0: {
         this.setData({
-          firstIndex: true,
-          secondIndex: false,
-          thirdIndex: false
+          currentSegIndex: 0
         })
       }
         break;
-      case 'secondIndex': {
+      case 1: {
         this.setData({
-          firstIndex: false,
-          secondIndex: true,
-          thirdIndex: false
+          currentSegIndex: 1
         })
       }
         break;
-      case 'thirdIndex': {
+      case 2: {
         this.setData({
-          firstIndex: false,
-          secondIndex: false,
-          thirdIndex: true
+          currentSegIndex: 2
         })
       }
         break;
     }
   },
+  // 选择器
   bindPickerChange(e) {
     console.log(e);
     console.log(e.detail);
@@ -146,26 +162,22 @@ Page({
     } else if (e.currentTarget.dataset.pickername =='fenqiPicker'){
       console.log(e.detail);
       this.setData({
-        'fenqiItem.index' : e.detail.value
+        'fenqiItem.index' : e.detail.value,
+        'houseLoanCalcModel.mortgageYear': 30-e.detail.value
       });
     }
     
   },
-  bindKeyInput(e) {
-    console.log(e.detail.value);
+  // 利率输入框
+  lilvInputCellBindKeyInput(e) {
     var value = e.detail.value
     var pos = e.detail.cursor
     value = value.replace('%','')
+    this.data.houseLoanCalcModel.bankRate = value;
+    console.log(this.data.houseLoanCalcModel.bankRate);
     if(value.length > 0){
       value = value+'%'
     }
-    // if(pos != -1){
-    //   //光标在中间
-    //   var left = e.detail.value.slice(0,pos)
-    //   //计算光标的位置
-    //   pos = left.replace(/11/g,'2').length
-    // }
-
     //直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置
     return {
       value: value,
@@ -175,5 +187,17 @@ Page({
       inputValue: e.detail.value+"%"
       
     })
+  },
+  // 贷款额度输入框
+  inputCellBindKeyInput(e) {
+    var value = e.detail.value
+    this.data.houseLoanCalcModel.businessTotalPrice = value;
+
+  },
+  // 开始计算
+  cacluateActive () {
+  wx.navigateTo({
+    url: '../Repayment/repaymentPage'
+  })
   }
 })

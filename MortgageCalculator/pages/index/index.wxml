@@ -3,15 +3,17 @@
 <view>
   <!-- 切换分页控制器 -->
   <view>
-    <template is='switchControl' data="{{firstIndexDec,secondIndexDec,thirdIndexDec,firstIndex,secondIndex,thirdIndex}}"></template>
+    <template is='switchControl' data="{{currentSegIndex,segmentControls}}"></template>
   </view>
   <!-- 输入框 -->
   <view>
     <template is='changeType' data='{{...cellItem[0]}}'></template>
     <template is='changeType' data='{{...cellItem[1]}}'></template>
-    <template is='inputCell' data='{{typeNameDes}}'></template>
-    <template wx:if ="{{daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
+    <template is='inputCell' data='{{...calculationType}}'></template>
+    <template wx:if ="{{calculationType.daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
     <template is='changeContentCell' data='{{...fenqiItem}}'></template>
-    <template is='lilvInputCell' data='{{lilvNameDes}}'></template>
+    <template is='lilvInputCell' data='{{...calculationType}}'></template>
+    <view class="advertiseView"></view>
+    <view class="cacluBtn" bindtap='cacluateActive'>开始计算</view>
   </view>
 </view>

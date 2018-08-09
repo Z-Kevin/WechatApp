@@ -1,0 +1,45 @@
+<view>
+  <!-- 贷款大致信息 -->
+  <view class="topDetailView">
+    <view class="everyItem">
+      <view class="topTitleFont">总贷款</view>
+      <view class="topContentFont">100万</view>
+    </view>
+    <view class="everyItem">
+        <view class="topTitleFont">总利息</view>
+        <view class="topContentFont">100万</view>
+      </view>
+      <view class="everyItem">
+          <view class="topTitleFont">月均还款</view>
+          <view class="topContentFont">100元</view>
+        </view>
+        <view class="everyItem">
+            <view class="topTitleFont">贷款月数</view>
+            <view class="topContentFont">360(30年)</view>
+          </view>
+  </view>
+  <view class="seportView"></view>
+  <view>
+    <view class="{{fixed?'titleWrapToTop':'titleWrap'}}">
+      <view class="titleContentFont">月份</view>
+      <view class="titleContentFont bad1">月供</view>
+      <view class="titleContentFont bad2">月供本金</view>
+      <view class="titleContentFont bad3">月供利息</view>
+      <view class="titleContentFont bad4">剩余</view>
+    </view>
+    <view class="bottomMoneyView">
+        <block wx:for="{{[1,2,3,4,5,6]}}" wx:for-index='yearIndex' wx:for-item="yearItem">
+            <view class="yearTitle">第{{yearItem}}年</view>
+            <block wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12]}}" wx:for-index='monthIndex'>
+                <view class="itemsMoneyWrap">
+                    <view class="itemsMoneyItem">{{monthIndex}}</view>
+                    <view class="itemsMoneyItem">2803</view>
+                    <view class="itemsMoneyItem">1900</view>
+                    <view class="itemsMoneyItem">2000</view>
+                    <view class="titleContentFont">1000093</view>
+                </view>
+            </block>
+          </block>
+    </view>
+  </view>
+</view>
