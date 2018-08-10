@@ -5,13 +5,13 @@
       <!-- 按房价总额 -->
       <view class="leftPart" bindtap='partActive' data-indexName='leftPart{{cellid}}'>
         <view class="outsideCircle">
-          <view class="{{leftSelected?'insideCircle':'unselectCircle'}}"></view>
+          <view class="{{leftSelected ?'insideCircle':'unselectCircle'}}"></view>
         </view>
         <view class="contentType">{{firstContentDes}}</view>
       </view>
       <view class="rightPart" bindtap='partActive' data-indexName='rightPart{{cellid}}'>
         <view class="outsideCircle">
-          <view class="{{rightSelected?'insideCircle':'unselectCircle'}}"></view>
+          <view class="{{rightSelected ?'insideCircle':'unselectCircle'}}"></view>
         </view>
         <view class="contentType">{{secondContentDes}}</view>
       </view>
@@ -21,7 +21,7 @@
 <!-- 房价总额： 输入框 （单位）万元格式 -->
 <template name="inputCell">
   <view class="inputViewCell">
-    <view class="baseFont leftNameDes">{{typeNameDes}}</view>
+    <view class="baseFont">{{typeNameDes}}</view>
     <input class="baseFont inputView" type="number" placeholder="0" bindinput="inputCellBindKeyInput"></input>
     <view class="lightFont unitsView">万元</view>
   </view>
@@ -29,8 +29,8 @@
 <!-- 选择器cell -->
 <template name="changeContentCell">
   <view class="inputViewCell">
-    <view class="baseFont leftNameDes">{{changeContentTypeNameDes}}</view>
-    <picker class="pickerView" data-pickerName ='{{pickerName}}' bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="baseFont">{{changeContentTypeNameDes}}</view>
+    <picker class="pickerView" data-pickerName='{{pickerName}}' bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="baseFont">{{array[index]}}</view>
     </picker>
     <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
@@ -39,8 +39,48 @@
 <!-- 利率输入框 -->
 <template name="lilvInputCell">
   <view class="inputViewCell">
-    <view class="baseFont leftNameDes">{{lilvNameDes}}</view>
+    <view class="baseFont">{{lilvNameDes}}</view>
     <input class="baseFont inputView lilvInputVie" type="digit" placeholder="0" bindinput="lilvInputCellBindKeyInput"></input>
-<image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
+    <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
+  </view>
+</template>
+<!-- 组合贷款的贷款金额 -->
+<template name="loadMoneyinputCell">
+  <view class="inputViewCell">
+    <view class="baseFont">{{loadMoney}}</view>
+    <input class="baseFont inputView" type="number" placeholder="0" bindinput="inputCellBindKeyInput"></input>
+    <view class="lightFont unitsView">万元</view>
+  </view>
+</template>
+<!-- 组合贷款的公积金贷款金额 -->
+<template name="providentLoadinputCell">
+  <view class="inputViewCell">
+    <view class="baseFont">{{providentLoad}}</view>
+    <input class="baseFont inputView" type="number" placeholder="0" bindinput="inputCellBindKeyInput"></input>
+    <view class="lightFont unitsView">万元</view>
+  </view>
+</template>
+<!-- 组合贷款的商业贷款金额 -->
+<template name="combinedLoaninputCell">
+  <view class="inputViewCell">
+    <view class="baseFont">{{combinedLoanMoeny}}</view>
+    <input class="baseFont inputView" type="number" placeholder="0" bindinput="inputCellBindKeyInput"></input>
+    <view class="lightFont unitsView">万元</view>
+  </view>
+</template>
+<!-- 组合贷公积金利率 -->
+<template name="providentlilv">
+  <view class="inputViewCell">
+    <view class="baseFont">{{providentlilvDes}}</view>
+    <input class="baseFont inputView lilvInputVie" type="digit" placeholder="0" bindinput="lilvInputCellBindKeyInput"></input>
+    <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
+  </view>
+</template>
+<!-- 商业利率 -->
+<template name="commercialLoansLilv">
+  <view class="inputViewCell">
+    <view class="baseFont">{{providentlilvDes}}</view>
+    <input class="baseFont inputView lilvInputVie" type="digit" placeholder="0" bindinput="lilvInputCellBindKeyInput"></input>
+    <image class="unitsView moreImage" src="../source/icon_jiantou.png"></image>
   </view>
 </template>

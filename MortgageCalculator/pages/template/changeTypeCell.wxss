@@ -89,10 +89,6 @@
   line-height: 88rpx;
 }
 
-.leftNameDes {
-  width: 136rpx;
-}
-
 .inputView {
   height: 100%;
   flex: 1;

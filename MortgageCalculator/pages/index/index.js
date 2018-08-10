@@ -7,17 +7,30 @@ Page({
     firstIndexDec: '公积金贷款',
     secondIndexDec: '商业贷款',
     thirdIndexDec: '组合贷款',
+    // 当前选择的哪种贷款类型 0 代表公积金贷款 1 代表商业贷款 2 代表组合贷款
     currentSegIndex: 1,
+    currentCaculateType:0,
+    currentRepaymentType:0,
     segmentControls:[
       {tabInex:0, tabTitle:'公积金贷款'},
       {tabInex:1, tabTitle:'商业贷款'},
       {tabInex:2, tabTitle:'组合贷款'}
     ],
     // 计算方式切换时候更新的UI样式
-    calculationType: {
-      typeNameDes: '房价总额:',//房价总额：||贷款总额
-      daiKuanBili: true,//贷款比例是否显示
-      lilvNameDes: '商贷利率:',
+    allTypeDataItem: {
+      // 公积金贷款两种计算方式
+      'providentFund': [
+        { calculateType:0, typeNameDes: '房价总额:' ,daiKuanBili: true, lilvNameDes:'公积金利率:' },
+        { calculateType:1, typeNameDes: '贷款金额:' ,daiKuanBili: false, lilvNameDes:'公积金利率:' },
+      ],
+      'commercialLoans': [
+        { calculateType:0, typeNameDes: '房价总额:' ,daiKuanBili: true, lilvNameDes:'商贷利率:' },
+        { calculateType:1, typeNameDes: '贷款金额:' ,daiKuanBili: false, lilvNameDes:'商贷利率:' },
+      ],
+      'combinedLoan': [
+        { calculateType:0, typeNameDes: '房价总额:' ,daiKuanBili: true, loadMoney:'贷款金额:',providentLoad:'公积金贷款金额:', providentlilvDes:'公积金利率:',combinedLoanMoeny:'商业贷款金额:',combinedLoanLilvDes:'商贷利率:' },
+        { calculateType:1, typeNameDes: '房价总额:' ,daiKuanBili: false, loadMoney:'贷款金额:',providentLoad:'公积金贷款金额:', providentlilvDes:'公积金利率:',combinedLoanMoeny:'商业贷款金额:',combinedLoanLilvDes:'商贷利率:' },
+      ]
     },
     //商贷情况显示数据
     cellItem: [{
@@ -26,14 +39,14 @@ Page({
       firstContentDes: '按房价总额',
       secondContentDes: '按照贷款总额',
       leftSelected: true,
-      rightSelected: false,
+      rightSelected: false
     }, {
       cellid: 1,
       changeTypeName: '还款方式：',
       firstContentDes: '等额本息',
       secondContentDes: '等额本金',
-      leftSelected: false,
-      rightSelected: true
+      leftSelected: true,
+      rightSelected: false
     }],
     changeContentItem: {
       changeContentTypeNameDes: '贷款比例:',
@@ -47,6 +60,22 @@ Page({
       index: 0,
       pickerName: 'fenqiPicker'
     },
+    // 组合贷款里的pickerView
+    // 公积金按揭年数
+    combinedLoanPickView:{
+      'providentFundPickerData': {
+        changeContentTypeNameDes: '按揭年数:',
+        array: ['30年(360期)','29年(348期)','28年(336期)','27年(324期)','26年(312期)','25年(300期)','24年(228期)','23年(276期)','22年(264期)','21年(252期)','20年(240期)','19年(228期)','18年(216期)','17年(204期)','16年(192期)','15年(180期)','14年(168期)','13年(156期)','12年(144期)','11年(132期)','10年(120期)','9年(108期)','8年(96期)','7年(84期)','6年(72期)','5年(60期)','4年(48期)','3年(36期)','2年(24期)','1年(12期)'],
+        index: 0,
+        pickerName: 'combinedLoanProvidentFenqiPicker'
+      },
+      'commercialLoansPickerData': {
+        changeContentTypeNameDes: '按揭年数:',
+        array: ['30年(360期)','29年(348期)','28年(336期)','27年(324期)','26年(312期)','25年(300期)','24年(228期)','23年(276期)','22年(264期)','21年(252期)','20年(240期)','19年(228期)','18年(216期)','17年(204期)','16年(192期)','15年(180期)','14年(168期)','13年(156期)','12年(144期)','11年(132期)','10年(120期)','9年(108期)','8年(96期)','7年(84期)','6年(72期)','5年(60期)','4年(48期)','3年(36期)','2年(24期)','1年(12期)'],
+        index: 0,
+        pickerName: 'combinedLoanCommercialLoansFenqiPicker'
+      },
+    },
     houseLoanCalcModel: {
       businessTotalPrice:100,// 商业贷款额
       fundTotalPrice: 100,//公积金贷款额
@@ -54,7 +83,8 @@ Page({
       bankRate: 0.049, //银行利率
       fundRate: 0.059, //公积金利率
       unitPrice: 6100,//房屋单价
-      area: 206 //面积
+      area: 206, //面积,
+      
     },
     houseLoanResultModel: {
       houseTotalPrice: 100,//房屋总价
@@ -90,7 +120,7 @@ Page({
         this.data.cellItem[0].rightSelected = false,
         this.setData({
           cellItem: that.data.cellItem,
-          calculationType: { daiKuanBili: true, typeNameDes:'房价总额:', lilvNameDes: '商贷利率:'}
+          currentCaculateType: 0
         })
       }
         break;
@@ -100,7 +130,7 @@ Page({
         this.data.cellItem[0].rightSelected = true
         this.setData({
           cellItem: that.data.cellItem,
-          calculationType: { daiKuanBili: false, typeNameDes:'贷款总额:', lilvNameDes: '商贷利率:'}
+          currentCaculateType: 1
         })
       }
         break;

@@ -22,10 +22,10 @@
   <view>
     <view class="{{fixed?'titleWrapToTop':'titleWrap'}}">
       <view class="titleContentFont">月份</view>
-      <view class="titleContentFont bad1">月供</view>
-      <view class="titleContentFont bad2">月供本金</view>
-      <view class="titleContentFont bad3">月供利息</view>
-      <view class="titleContentFont bad4">剩余</view>
+      <view class="titleContentFont">月供</view>
+      <view class="titleContentFont">月供本金</view>
+      <view class="titleContentFont">月供利息</view>
+      <view class="titleContentFont">剩余</view>
     </view>
     <view class="bottomMoneyView">
         <block wx:for="{{[1,2,3,4,5,6]}}" wx:for-index='yearIndex' wx:for-item="yearItem">

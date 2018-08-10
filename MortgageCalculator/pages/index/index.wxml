@@ -9,11 +9,36 @@
   <view>
     <template is='changeType' data='{{...cellItem[0]}}'></template>
     <template is='changeType' data='{{...cellItem[1]}}'></template>
-    <template is='inputCell' data='{{...calculationType}}'></template>
-    <template wx:if ="{{calculationType.daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
-    <template is='changeContentCell' data='{{...fenqiItem}}'></template>
-    <template is='lilvInputCell' data='{{...calculationType}}'></template>
+    <view wx:if='{{currentSegIndex == 0}}'>
+      <template is='inputCell' data='{{...allTypeDataItem.providentFund[currentCaculateType]}}'></template>
+      <template wx:if ="{{allTypeDataItem.providentFund[currentCaculateType].daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
+      <template is='changeContentCell' data='{{...fenqiItem}}'></template>
+      <template is='lilvInputCell' data='{{...allTypeDataItem.providentFund[currentCaculateType]}}'></template>
+    </view>
+    <view wx:elif ='{{currentSegIndex == 1}}'>
+      <template is='inputCell' data='{{...allTypeDataItem.commercialLoans[currentCaculateType]}}'></template>
+      <template wx:if ="{{allTypeDataItem.commercialLoans[currentCaculateType].daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
+      <template is='changeContentCell' data='{{...fenqiItem}}'></template>
+      <template is='lilvInputCell' data='{{...allTypeDataItem.commercialLoans[currentCaculateType]}}'></template>
+    </view>
+    <view wx:else ='{{currentSegIndex == 2}}'>
+      <template wx:if ='{{currentCaculateType == 0}}'is='inputCell' data='{{...allTypeDataItem.combinedLoan[currentCaculateType]}}'></template>
+      <template wx:if ="{{allTypeDataItem.combinedLoan[currentCaculateType].daiKuanBili}}" is='changeContentCell' data='{{...changeContentItem}}'></template>
+      <template wx:if ='{{currentCaculateType == 0}}' is='loadMoneyinputCell' data='{{...allTypeDataItem.combinedLoan[currentCaculateType]}}'></template>
+      <template is='providentLoadinputCell' data='{{...allTypeDataItem.combinedLoan[currentCaculateType]}}'></template>
+      <template is='changeContentCell' data='{{...combinedLoanPickView.providentFundPickerData}}'></template>
+      <template is='providentlilv' data='{{...allTypeDataItem.combinedLoan[currentCaculateType]}}'></template>
+      <template is='combinedLoaninputCell' data='{{...allTypeDataItem.combinedLoan[currentCaculateType]}}'></template>
+      <template is='changeContentCell' data='{{...combinedLoanPickView.commercialLoansPickerData}}'></template>
+      <template is='commercialLoansLilv' data='{{...allTypeDataItem.combinedLoan[currentCaculateType]}}'></template>
+     </view>
+    
+    
     <view class="advertiseView"></view>
     <view class="cacluBtn" bindtap='cacluateActive'>开始计算</view>
   </view>
+  
+
+
+
 </view>
