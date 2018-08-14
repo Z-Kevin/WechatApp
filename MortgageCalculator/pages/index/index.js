@@ -84,7 +84,6 @@ Page({
       fundRate: 0.059, //公积金利率
       unitPrice: 6100,//房屋单价
       area: 206, //面积,
-      
     },
     houseLoanResultModel: {
       houseTotalPrice: 100,//房屋总价
@@ -226,6 +225,20 @@ Page({
   },
   // 开始计算
   cacluateActive () {
+    switch (currentSegIndex){
+      case 0:{
+        break;
+      }
+      case 1: {
+
+        break;
+      }
+      case 2:{
+
+        break;
+      }
+    }
+
   wx.navigateTo({
     url: '../Repayment/repaymentPage'
   })
